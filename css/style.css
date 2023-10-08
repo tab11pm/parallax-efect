@@ -1,0 +1,135 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+:root{
+	--index: calc(1vw + 1vh);
+	--transition: 1s cubic-bezier(.05, .5, 0, 1);
+}
+
+@font-face {
+	font-family: kamerik-3d;
+	src: url('../fonts/kamerik205-heavy.woff2');
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: marriweather-3d;
+	src: url('../fonts/merriweather-regular-italic.woff2');
+}
+body {
+	background: #000;
+	color: #fff;
+	font-family: kamerik-3d;
+}
+
+.logo {
+	--logo-size: calc(var(--index) * 7.8); 
+	width: var(--logo-size);
+	height: var(--logo-size);
+	position: absolute;
+	top: calc(var(--index) * 2.8);
+	left: calc(50% - calc(var(--logo-size) / 2));
+	z-index: 1;	
+}
+
+.layers {
+	perspective: 1000px;
+	overflow: hidden;
+}
+
+.layers__container {
+	transform-style: preserve-3d;
+	height: 100vh;
+	min-height: 500px;
+	transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+	will-change: transform;
+	transition: transform var(--transition);
+}
+
+.layers__item {
+	position: absolute;
+	inset: -5vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.layer-1 {
+	transform: translateZ(-55) scale(1.06);
+}
+.layer-2 {
+	transform: translateZ(80px) scale(.88);
+
+}
+.layer-3 {
+	transform: translateZ(180px) scale(.8) ;
+
+}
+.layer-4 {
+	transform: translateZ(190px) scale(.9) ;
+
+}
+.layer-5 {
+	transform: translateZ(300px) scale(.9) ;
+
+}
+.layer-6 {
+	transform: translateZ(380px) scale(.88) ;
+
+}
+
+.hero__content {
+	font-size: calc(var(--index) * 2.7);
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: calc(var(--index) * .15);
+	line-height: 1.35em;
+	margin-top: calc(var(--index) * 5.5);
+}
+
+.hero__p {
+	text-transform: none;
+	font-family: marriweather-3d;
+	letter-spacing: normal;
+	font-size: calc(var(--index) * .73);
+	line-height: 3;
+}
+
+.button-start {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;	
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: calc(var(--index) * .7);
+	letter-spacing: -.02vw;
+	padding: calc(var(--index) * .7) calc(var(--index) * 1.21);
+	border-radius: 10em;
+	background: transparent;
+	color: #fff;
+	border: rgb(255 255 255 / .4) 1px solid;
+	outline: none;
+	cursor: pointer;
+	transition: all .3s ease 0s;
+}
+
+.button-start:hover{
+	/*transform: ;	*/
+
+}
+
+.button-start:active{
+	transform: scale(.9);
+}
+
+.layer-6, .layer-5, .layer-4 {
+	pointer-events: none; 
+	/*! для того чтобы работать с другими элементами которые лежать под ных */
+}
